@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
@@ -10,8 +9,7 @@ import Register from '../Register/Register';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
+    <div className="app">
       <Routes>
         <Route path="/" element={<Main />} exact />
         <Route path="/movies" element={<Movies />} />
@@ -22,6 +20,6 @@ function App() {
       </Routes>
     </div>
   );
-}
+};
 
 export default App;
