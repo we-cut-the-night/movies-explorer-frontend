@@ -17,7 +17,7 @@ function App() {
         <Route path='/' element={<Main loggedIn={loggedIn} />} exact />
         <Route path='/movies' element={<Movies loggedIn={loggedIn} />} />
         <Route path='/saved-movies' element={<SavedMovies loggedIn={loggedIn} />} />
-        <Route path='/profile' element={<Profile name='Виталий' email='pochta@yandex.ru'/>} />
+        <Route path='/profile' element={<Profile loggedIn={loggedIn} name='Виталий' email='pochta@yandex.ru'/>} />
         <Route path='/signin' element={<Login welcome='Рады видеть!' />} />
         <Route path='/signup' element={<Register welcome='Добро пожаловать!' />} />
         <Route path='*' element={<NotFound />} />

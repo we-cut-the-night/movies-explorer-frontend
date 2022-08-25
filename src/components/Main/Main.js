@@ -4,10 +4,11 @@ import AboutProject from '../AboutProject/AboutProject';
 import Techs from '../Techs/Techs';
 import AboutMe from '../AboutMe/AboutMe';
 import Footer from '../Footer/Footer';
+import './Main.css';
 
 function Main({loggedIn}) {
   return (
-    <>
+    <div className='main-page'>
       <Header loggedIn={loggedIn}/>
       <main>
         <Promo />
@@ -16,7 +17,7 @@ function Main({loggedIn}) {
         <AboutMe />
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 

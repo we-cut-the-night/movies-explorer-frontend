@@ -12,8 +12,8 @@ function Header({ loggedIn }) {
       </Link>
       {loggedIn ?
         <div>
-          <Navigation className='header__navigation-desktop' />
-          <MenuBurger className='header__navigation-mobile'/>
+          <Navigation />
+          <MenuBurger />
         </div>
         :
         <nav className='header__navigation'>

@@ -4,39 +4,35 @@
   justify-content: space-between;
   margin: 0 auto;
   padding: 18px 70px;
+  background-color: transparent;
 }
 
 .header__logo:hover {
   opacity: 0.7;
 }
 
-.header__navigation-desktop {
+.header__navigation-button {
   margin: 0;
-  display: flex;
+  padding: 8px 20px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000;
+  text-decoration: none;
 }
 
-.header__navigation-mobile {
-  margin: 0;
-  display: none;
+.header__navigation-button_dark {
+  border-radius: 3px;
+  background-color: #3456F3;
+  color: #FFF;
+  transition: .4s;
+}
+
+.header__navigation-button_dark:hover {
+  opacity: .8;
 }
 
 @media screen and ( max-width: 830px ) {
-  .header__navigation-desktop {
-    margin: 0;
-    display: none;
-  }
-
-  .header__navigation-mobile {
-    margin: 0;
-    display: flex;
-  }
-
-  .header__login-open {
-    display: block;
-    cursor: pointer;
-    z-index: 9999;
-  }
-
   .header {
     padding: 18px 30px;
   }

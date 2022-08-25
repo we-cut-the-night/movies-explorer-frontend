@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import HeaderWelcome from '../HeaderWelcome/HeaderWelcome';
+import '../Register/Register.css';
 
 function Login({ welcome }) {
   return (
     <div className='register'>
       <HeaderWelcome welcome={ welcome } />
-      <main>
+      <main className='register__main'>
         <form className='register__form'>
           <label htmlFor='email' className='register__form-label'>E-mail</label>
           <input id='email' name='email' type='email' className='register__form-input' placeholder='Email' required />

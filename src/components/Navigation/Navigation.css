@@ -17,22 +17,20 @@
   list-style: none;
 }
 
-.header__nav-item:first-child {
-  display: none;
-}
-
 .header__nav-item:last-child {
-  margin-left: 50px;
+  margin: 0 0 0 50px;
 }
 
 .header__nav-link {
-  font-family: var(--font-family);
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
-  color: var(--white);
+  color: #000;
   text-decoration: none;
+}
+
+.header__nav-link_active {
+  font-weight: 500;
 }
 
 .header__nav-link:hover {
@@ -40,17 +38,19 @@
 }
 
 .header__profile {
+  padding: 8px 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap:17px;
-  color: var(--white);
+  gap: 17px;
+  background-color: #F4F4F4;
+  border-radius: 20px;
   text-decoration: none;
-  font-family: var(--font-family);
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
+  color: #000;
 }
 
 .header__profile:hover {
@@ -58,16 +58,23 @@
 }
 
 @media screen and ( max-width: 830px ) {
-  /* .header__login {
+  .header__login {
     display: none;
-  } */
+  }
 
   .header__nav-login {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
     align-items: baseline;
     gap: 20px;
+  }
+
+  .header__nav-link_active {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    padding-bottom: 8px;
+    border-bottom: solid 2px #000;
   }
 }

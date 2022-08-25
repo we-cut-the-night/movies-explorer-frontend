@@ -2,10 +2,10 @@ import Header from '../Header/Header';
 import { Link } from 'react-router-dom';
 import './Profile.css';
 
-function Profile({ name, email }) {
+function Profile({ loggedIn, name, email }) {
   return (
     <div className='profile'>
-      <Header loggedIn={false} />
+      <Header loggedIn={loggedIn} />
       <main>
         <h1 className='profile__header'>Привет, {name}!</h1>
         <form className='profile__form'>

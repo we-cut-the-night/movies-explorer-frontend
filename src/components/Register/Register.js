@@ -6,7 +6,7 @@ function Register({ welcome }) {
   return (
     <div className='register'>
       <HeaderWelcome welcome={ welcome } />
-      <main>
+      <main className='register__main'>
         <form className='register__form'>
           <label htmlFor='name' className='register__form-label'>Имя</label>
           <input id='name' name='name' type='text' className='register__form-input' placeholder='Ваше имя' required />

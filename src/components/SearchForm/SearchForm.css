@@ -37,16 +37,16 @@
 }
 
 .search__button:hover {
-  opacity: .8;
+  opacity: .7;
 }
 
 .search__input {
+  width: calc(100% - 34px * 2);
   margin: 0;
   padding: 15px 0 15px;
   border: none;
   text-align: center;
   background-color: transparent;
-  width: 100%;
 }
 
 .search__input:focus {
@@ -72,6 +72,7 @@
   }
 
   .search__input {
+      width: calc(100% - 34px);
       font-size: 11px;
       text-align: left;
   }

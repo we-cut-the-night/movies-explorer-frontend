@@ -36,8 +36,7 @@
 }
 
 .register__form-submit {
-  margin-top:69px;
-  font-style: normal;
+  margin: 69px 0 0 0;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
@@ -86,8 +85,25 @@
   opacity: .7;
 }
 
+@media screen and ( max-width: 830px ) {
+  .register__form-submit {
+    margin: 110px 0 0 0;
+  }
+}
+
 @media screen and ( max-width: 530px ) {
+  .register__main {
+    height: calc(100vh - 225px);
+    display: flex;
+    flex-direction: column;
+  }
+
   .register__form {
+    height: 100%;
     width: 90%;
+  }
+
+  .register__form-submit {
+    margin: auto 0 0 0;
   }
 }
