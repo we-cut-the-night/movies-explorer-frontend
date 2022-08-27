@@ -9,7 +9,7 @@ import Register from '../Register/Register';
 import NotFound from '../NotFound/NotFound';
 
 function App() {
-  const loggedIn = true;
+  const loggedIn = false;
 
   return (
     <div className='app'>
