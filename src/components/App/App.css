@@ -1,0 +1,10 @@
+.app {
+  min-height: 100vh;
+  min-width: 320px;
+  background-color: #FFF;
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #000;
+}

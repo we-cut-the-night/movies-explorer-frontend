@@ -1,0 +1,37 @@
+.page-frame {
+  margin: 0;
+  background-color: #FAFAFA;
+  padding: 110px 70px 100px;
+}
+
+.page-frame_theme_grey {
+  background-color: #F5F5F5;
+}
+
+.page-frame__title {
+  margin: 0;
+  padding: 0 0 23px 0;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  border-bottom: solid 1px #000;
+}
+
+@media screen and ( max-width: 830px ) {
+  .page-frame {
+    padding: 90px 50px;
+  }
+}
+
+@media screen and ( max-width: 530px ) {
+  .page-frame {
+    padding: 70px 18px;
+  }
+
+  .page-title {
+    padding: 0 0 28px 0;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
