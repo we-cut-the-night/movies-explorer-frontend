@@ -3,13 +3,34 @@ import Footer from '../Footer/Footer';
 import MoviesCardlist from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 
-const Movies = ({ loggedIn }) => {
+const Movies = ({
+  loggedIn,
+  isLoading,
+  movies,
+  search,
+  setSearchQuery,
+  handleFormSubmit,
+  moviesShown,
+  pageCapacity,
+  handleCardButtonClick
+}) => {
   return (
     <>
       <Header loggedIn={loggedIn} />
       <main>
-        <SearchForm />
-        <MoviesCardlist page='Movies'/>
+        <SearchForm
+          search={search}
+          setSearchQuery={setSearchQuery}
+          handleFormSubmit={handleFormSubmit}
+        />
+        <MoviesCardlist
+          page='Movies'
+          isLoading={isLoading}
+          movies={movies}
+          moviesShown={moviesShown}
+          pageCapacity={pageCapacity}
+          handleCardButtonClick={handleCardButtonClick}
+        />
       </main>
       <Footer />
     </>

@@ -12,7 +12,9 @@
 
 .movie__photo {
   width: 100%;
+  height: 151px;
   margin-bottom: 14px;
+  object-fit: cover;
 }
 
 .movie__save-button {
@@ -92,6 +94,11 @@
   .movie {
       width: 339px;
   }
+
+  .movie__photo {
+    height: 190px;
+  }
+
   .movie__description {
       width: 315px;
   }
@@ -100,6 +107,10 @@
 @media all and (max-width: 530px) {
   .movie {
       width: 300px;
+  }
+
+  .movie__photo {
+    height: 168px;
   }
 
   .movie__description {
