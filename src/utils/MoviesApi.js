@@ -11,7 +11,7 @@ const checkResponse = (res) => { // обработка ответа API
     });
 };
 
-export const getMoviesData = () => { // проверить токен, получить email
+export const getMoviesData = () => { // получить список фильмов
   return fetch(`${BASE_URL_MOVIES}`, {
     method: 'GET',
     headers: {

@@ -2,38 +2,60 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import MoviesCardlist from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
+import Preloader from '../Preloader/Preloader';
+import './Movies.css';
 
 const Movies = ({
   loggedIn,
-  isLoading,
   movies,
+  moviesSaved,
   search,
   setSearchQuery,
   handleFormSubmit,
   moviesShown,
   pageCapacity,
-  handleCardButtonClick
+  handleCardButtonClick,
+  isShortMovie,
+  onShortMovie,
+  onSaveMovie,
+  onDeleteMovie,
+  isLoading
 }) => {
   return (
-    <>
-      <Header loggedIn={loggedIn} />
-      <main>
-        <SearchForm
-          search={search}
-          setSearchQuery={setSearchQuery}
-          handleFormSubmit={handleFormSubmit}
-        />
-        <MoviesCardlist
-          page='Movies'
-          isLoading={isLoading}
-          movies={movies}
-          moviesShown={moviesShown}
-          pageCapacity={pageCapacity}
-          handleCardButtonClick={handleCardButtonClick}
-        />
-      </main>
+    <div className='movies'>
+      <div>
+        <Header loggedIn={loggedIn} />
+        <main>
+          <SearchForm
+            page='Movies'
+            search={search}
+            setSearchQuery={setSearchQuery}
+            handleFormSubmit={handleFormSubmit}
+            isShortMovie={isShortMovie}
+            onShortMovie={onShortMovie}
+          />
+          {isLoading ?
+            <Preloader />
+            :
+            moviesShown > 0 && (
+              movies.length > 0 ?
+                (<MoviesCardlist
+                  page='Movies'
+                  movies={movies}
+                  moviesSaved={moviesSaved}
+                  moviesShown={moviesShown}
+                  pageCapacity={pageCapacity}
+                  handleCardButtonClick={handleCardButtonClick}
+                  onSaveMovie={onSaveMovie}
+                  onDeleteMovie={onDeleteMovie}
+                />)
+                : (<p className='movies__found-nothing'>Ничего не найдено</p>)
+            )
+          }
+        </main>
+      </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

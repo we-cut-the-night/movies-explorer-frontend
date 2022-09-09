@@ -1,18 +1,36 @@
+import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
-import MoviesCard from "../MoviesCard/MoviesCard";
 
-const MoviesCardlist = ({ page, isLoading, movies, moviesShown, pageCapacity, handleCardButtonClick }) => {
+const MoviesCardlist = ({
+  page,
+  movies,
+  moviesSaved,
+  moviesShown,
+  pageCapacity,
+  handleCardButtonClick,
+  onSaveMovie,
+  onDeleteMovie
+}) => {
   return (
     <section className='movies-card'>
-      {/* {console.log(movies)} */}
       <div className='movies-card__list'>
-        {
-          movies && movies
-            .filter((movie, i) => { return i < moviesShown })
-            .map(movie => <MoviesCard key={movie.id} page={page} isSaved={false} {...movie} />)
+        {movies
+          .filter((movie, i) => { return page === 'SavedMovies' ? true : i < moviesShown })
+          .map(movie =>
+            <MoviesCard
+              key={movie.id}
+              page={page}
+              isSaved={moviesSaved.find((movieSaved) => movieSaved.id === movie.id)}
+              onSaveMovie={onSaveMovie}
+              onDeleteMovie={onDeleteMovie}
+              movie={movie}
+              {...movie}
+            />)
         }
       </div>
-      {page === 'Movies' && <button className='movies-card__button' onClick={handleCardButtonClick}>Еще</button>}
+      {page === 'Movies' &&
+        movies.length > pageCapacity && moviesShown < movies.length &&
+        <button className='movies-card__button' onClick={handleCardButtonClick}>Еще</button>}
     </section>
   );
 };
