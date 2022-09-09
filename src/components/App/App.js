@@ -194,7 +194,9 @@ function App() {
     } else {
 
       moviesFiltered = savedMovies
-        .filter((movie) => searchSaved && movie.title.toLowerCase().includes(searchSaved.toLowerCase()))
+        .filter((movie) =>
+          searchSaved ?
+            movie.title.toLowerCase().includes(searchSaved.toLowerCase()) : savedMovies)
         .filter((movie) => isShortMovieSaved ? movie.duration <= SHORT_MOVIE_DURATION : true)
 
       setMoviesFilteredSaved(moviesFiltered);
