@@ -9,4 +9,6 @@
 Адреса проекта:
 * Клиент: [cinemaclub.nomoredomains.sbs](https://cinemaclub.nomoredomains.sbs)
 * Сервер: [api.cinemaclub.nomoredomains.sbs](https://api.cinemaclub.nomoredomains.sbs)
-* IP-адрес: 51.250.111.43
+* IP-адрес: 51.250.108.111
+
+Pull request [https://github.com/we-cut-the-night/movies-explorer-frontend/pull/2] (https://github.com/we-cut-the-night/movies-explorer-frontend/pull/2)
