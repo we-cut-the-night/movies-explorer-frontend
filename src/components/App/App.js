@@ -71,6 +71,12 @@ function App() {
   // выйти
   const handleLogout = () => {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('search');
+    localStorage.removeItem('isShortMovie');
+    localStorage.removeItem('movies');
+    localStorage.removeItem('searchSaved');
+    localStorage.removeItem('isShortMovieSaved');
+    localStorage.removeItem('moviesSaved');
     setLoggedIn(false);
   }
 
@@ -188,7 +194,7 @@ function App() {
     } else {
 
       moviesFiltered = savedMovies
-        .filter((movie) => movie.title.toLowerCase().includes(searchSaved.toLowerCase()))
+        .filter((movie) => searchSaved && movie.title.toLowerCase().includes(searchSaved.toLowerCase()))
         .filter((movie) => isShortMovieSaved ? movie.duration <= SHORT_MOVIE_DURATION : true)
 
       setMoviesFilteredSaved(moviesFiltered);
