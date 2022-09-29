@@ -1,41 +1,65 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import Header from '../Header/Header';
 import './Profile.css';
-import { regex } from '../../utils/constants';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 
-function Profile({ loggedIn, onSubmit, onLogout }) {
+function Profile({ loggedIn, onSubmit, onLogout, message }) {
   const currentUser = useContext(CurrentUserContext);
+  const [isActive, setIsActive] = useState(false);
 
-  const [userName, setUserName] = useState(currentUser.name);
-  const [userEmail, setUserEmail] = useState(currentUser.email);
+  const { register, handleSubmit, reset, formState: { errors, isValid }, getValues, clearErrors } = useForm({
+    mode: 'onChange',
+    defaultValues: {
+      name: currentUser.name,
+      email: currentUser.email,
+    },
+  });
 
-  const [emailIsValid, setEmailIsValid] = useState(true);
-  const [nameIsValid, setNameIsValid] = useState(true);
+  const checkForm = () => {
+    const name = getValues('name');
+    const email = getValues('email');
 
-  const handleChangeName = (e) => {
-    setUserName(e.target.value);
-    setNameIsValid(e.target.value.length > 0);
+    if (!name || !email) return;
+    if (name !== currentUser.name || email !== currentUser.email) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
   };
 
-  const handleChangeEmail = (e) => {
-    setUserEmail(e.target.value);
-    setEmailIsValid(regex.test(e.target.value.toLowerCase()));
+  const handleSubmitForm = () => {
+    const name = getValues('name');
+    const email = getValues('email');
+
+    onSubmit(name, email);
+    reset();
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    emailIsValid && nameIsValid &&
-    onSubmit(userName, userEmail);
+  const handleValidation = () => {
+    const name = getValues('name');
+    const email = getValues('email');
+
+    if (name !== currentUser.name || email !== currentUser.email) {
+      clearErrors('name');
+      clearErrors('email');
+      return true;
+    } else {
+      return false;
+    }
   };
+
+  useEffect(() => {
+    checkForm();
+  });
 
   return (
     <div className='profile'>
       <Header loggedIn={loggedIn} />
       <main className='profile__main'>
         <h1 className='profile__header'>Привет, {currentUser.name}!</h1>
-        <form className='profile__form' onSubmit={handleSubmit}>
+        <form className='profile__form' onSubmit={handleSubmit(handleSubmitForm)}>
           <fieldset className='profile__fieldset'>
             <label htmlFor='name' className='profile__form-label'>Имя</label>
             <input
@@ -43,11 +67,22 @@ function Profile({ loggedIn, onSubmit, onLogout }) {
               name='name'
               type='text'
               className='profile__form-input'
-              placeholder={userName}
-              value={typeof userName === 'undefined' ? '' : userName}
-              onChange={handleChangeName}
-              required
+              placeholder='Ваше имя'
+              onChange={checkForm}
+              {...register('name', {
+                required: 'Необходимо ввести имя',
+                minLength: {
+                  value: 2,
+                  message: 'Имя должно содержать не менее 2 символов',
+                },
+                maxLength: {
+                  value: 30,
+                  message: 'Имя должно содержать не более 30 символов',
+                },
+                validate: handleValidation,
+              })}
             />
+            {errors?.name && (<span className='profile__error'>{errors?.name?.message}</span>)}
           </fieldset>
           <fieldset className='profile__fieldset'>
             <label htmlFor='email' className='profile__form-label'>E-mail</label>
@@ -56,16 +91,23 @@ function Profile({ loggedIn, onSubmit, onLogout }) {
               name='email'
               type='email'
               className='profile__form-input'
-              placeholder={userEmail}
-              value={typeof userEmail === 'undefined' ? '' : userEmail}
-              onChange={handleChangeEmail}
-              required
+              placeholder='Email'
+              {...register('email', {
+                required: 'Необходимо ввести email',
+                pattern: {
+                  value: /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
+                  message: 'Введен некорректный email',
+                },
+              })}
             />
+            {errors?.email && (<span className='profile__error'>{errors?.email?.message}</span>)}
           </fieldset>
+          <div className='profile__message'>{message}</div>
           <div className='profile__buttons'>
             <button
               type='submit'
-              className={emailIsValid && nameIsValid ? 'profile__edit' : 'profile__edit profile__edit_disabled'}
+              className={isValid && isActive ? 'profile__edit' : 'profile__edit profile__edit_disabled'}
+              disabled={isValid && isActive ? false : true}
             >
               Редактировать
             </button>

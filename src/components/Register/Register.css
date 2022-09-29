@@ -13,6 +13,15 @@
   width: 396px;
 }
 
+.register__field {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: none;
+}
+
 .register__form-label {
   font-weight: 400;
   font-size: 10px;
@@ -35,6 +44,16 @@
   outline: none;
 }
 
+.register__error{
+  position: absolute;
+  bottom: 10px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #FF4062;
+  margin: 0;
+}
+
 .register__form-submit {
   margin: 69px 0 0 0;
   font-weight: 500;
@@ -49,6 +68,12 @@
   border: none;
   padding: 13px 0 15px;
   cursor: pointer;
+}
+
+.register__form-submit_disabled {
+  background-color: #F8F8F8;
+  color: #C2C2C2;
+  cursor: default;
 }
 
 .register__form-submit:hover {
@@ -83,6 +108,17 @@
 
 .register__signin-link:hover {
   opacity: .7;
+}
+
+.register__message {
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 12px;
+  color: #FF4062;
+  margin: 0;
 }
 
 @media screen and ( max-width: 830px ) {

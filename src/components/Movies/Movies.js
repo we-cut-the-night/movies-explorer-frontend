@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import MoviesCardlist from '../MoviesCardList/MoviesCardList';
@@ -19,8 +20,15 @@ const Movies = ({
   onShortMovie,
   onSaveMovie,
   onDeleteMovie,
-  isLoading
+  isLoading,
+  searchError,
+  resetMovies
 }) => {
+
+  useEffect(() => {
+    resetMovies();
+  }, []);
+
   return (
     <div className='movies'>
       <div>
@@ -34,23 +42,27 @@ const Movies = ({
             isShortMovie={isShortMovie}
             onShortMovie={onShortMovie}
           />
-          {isLoading ?
-            <Preloader />
-            :
-            moviesShown > 0 && (
-              movies.length > 0 ?
-                (<MoviesCardlist
-                  page='Movies'
-                  movies={movies}
-                  moviesSaved={moviesSaved}
-                  moviesShown={moviesShown}
-                  pageCapacity={pageCapacity}
-                  handleCardButtonClick={handleCardButtonClick}
-                  onSaveMovie={onSaveMovie}
-                  onDeleteMovie={onDeleteMovie}
-                />)
-                : (<p className='movies__found-nothing'>Ничего не найдено</p>)
-            )
+          {
+            isLoading && <Preloader />
+          }
+          {
+            !isLoading && searchError && (<p className='movies__found-nothing'>{searchError}</p>)
+          }
+          {
+            !isLoading && !searchError && moviesShown > 0 && movies && movies.length > 0 &&
+              (<MoviesCardlist
+                page='Movies'
+                movies={movies}
+                moviesSaved={moviesSaved}
+                moviesShown={moviesShown}
+                pageCapacity={pageCapacity}
+                handleCardButtonClick={handleCardButtonClick}
+                onSaveMovie={onSaveMovie}
+                onDeleteMovie={onDeleteMovie}
+              />)
+          }
+          {
+            !isLoading && !searchError && movies.length === 0 && (<p className='movies__found-nothing'>Ничего не найдено</p>)
           }
         </main>
       </div>

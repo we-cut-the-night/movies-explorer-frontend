@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import MoviesCardlist from '../MoviesCardList/MoviesCardList';
@@ -17,8 +18,15 @@ const SavedMovies = ({
   handleFormSubmit,
   onShortMovie,
   onDeleteMovie,
-  isLoading
+  isLoading,
+  searchErrorSaved,
+  resetSavedMovies
 }) => {
+
+  useEffect(() => {
+    resetSavedMovies();
+  }, []);
+
   return (
     <div className='saved-movies'>
       <div>
@@ -32,10 +40,14 @@ const SavedMovies = ({
             isShortMovie={isShortMovie}
             onShortMovie={onShortMovie}
           />
-          {isLoading ?
-            <Preloader />
-            :
-            movies.length > 0 &&
+          {
+            isLoading && <Preloader />
+          }
+          {
+            !isLoading && searchErrorSaved && (<p className='movies__found-nothing'>{searchErrorSaved}</p>)
+          }
+          {
+            !isLoading && !searchErrorSaved && movies.length > 0 &&
             (<MoviesCardlist
               page='SavedMovies'
               movies={movies}
@@ -44,8 +56,9 @@ const SavedMovies = ({
               pageCapacity={pageCapacity}
               onDeleteMovie={onDeleteMovie}
             />)
-            // (<p className='saved-movies__found-nothing'>Ничего не найдено</p>)
-
+          }
+          {
+            !isLoading && movies.length === 0 && (<p className='saved-movies__found-nothing'>Ничего не найдено</p>)
           }
         </main>
       </div>

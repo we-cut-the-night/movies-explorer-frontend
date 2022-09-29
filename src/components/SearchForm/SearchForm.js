@@ -15,7 +15,6 @@ const SearchForm = ({ page, search, setSearchQuery, handleFormSubmit, isShortMov
           value={search}
           onChange={ e => setSearchQuery(e.target.value)}
           placeholder='Фильм'
-          required
         />
         <button className='search__button' />
       </form>
