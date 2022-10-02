@@ -1,15 +1,15 @@
 import { useState, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Header from '../Header/Header';
 import './Profile.css';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 
 function Profile({ loggedIn, onSubmit, onLogout, message }) {
   const currentUser = useContext(CurrentUserContext);
   const [isActive, setIsActive] = useState(false);
 
-  const { register, handleSubmit, reset, formState: { errors, isValid }, getValues, clearErrors } = useForm({
+  const { register, handleSubmit, reset, formState: { errors, isValid }, getValues, setValue, clearErrors } = useForm({
     mode: 'onChange',
     defaultValues: {
       name: currentUser.name,
@@ -34,7 +34,6 @@ function Profile({ loggedIn, onSubmit, onLogout, message }) {
     const email = getValues('email');
 
     onSubmit(name, email);
-    reset();
   };
 
   const handleValidation = () => {
@@ -50,9 +49,7 @@ function Profile({ loggedIn, onSubmit, onLogout, message }) {
     }
   };
 
-  useEffect(() => {
-    checkForm();
-  });
+  useEffect(() => checkForm());
 
   return (
     <div className='profile'>

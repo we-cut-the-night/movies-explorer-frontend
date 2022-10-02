@@ -1,9 +1,13 @@
-import { Outlet, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ({ loggedIn }) => {
-  if (loggedIn) {
-    return <Outlet />;
-  } return <Navigate to='/' />;
+const ProtectedRoute = ({ loggedIn, children }) => {
+  return (
+    <>
+      {localStorage.getItem('jwt') ? children
+        : <Navigate to='/' />
+      }
+    </>
+  );
 };
 
 export default ProtectedRoute;

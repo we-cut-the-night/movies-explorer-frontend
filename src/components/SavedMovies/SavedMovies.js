@@ -23,9 +23,7 @@ const SavedMovies = ({
   resetSavedMovies
 }) => {
 
-  useEffect(() => {
-    resetSavedMovies();
-  }, []);
+  useEffect(() => resetSavedMovies(), []);
 
   return (
     <div className='saved-movies'>
@@ -56,9 +54,6 @@ const SavedMovies = ({
               pageCapacity={pageCapacity}
               onDeleteMovie={onDeleteMovie}
             />)
-          }
-          {
-            !isLoading && movies.length === 0 && (<p className='saved-movies__found-nothing'>Ничего не найдено</p>)
           }
         </main>
       </div>

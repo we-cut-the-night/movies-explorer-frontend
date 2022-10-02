@@ -25,9 +25,7 @@ const Movies = ({
   resetMovies
 }) => {
 
-  useEffect(() => {
-    resetMovies();
-  }, []);
+  useEffect(() => resetMovies(), []);
 
   return (
     <div className='movies'>
@@ -50,19 +48,16 @@ const Movies = ({
           }
           {
             !isLoading && !searchError && moviesShown > 0 && movies && movies.length > 0 &&
-              (<MoviesCardlist
-                page='Movies'
-                movies={movies}
-                moviesSaved={moviesSaved}
-                moviesShown={moviesShown}
-                pageCapacity={pageCapacity}
-                handleCardButtonClick={handleCardButtonClick}
-                onSaveMovie={onSaveMovie}
-                onDeleteMovie={onDeleteMovie}
-              />)
-          }
-          {
-            !isLoading && !searchError && movies.length === 0 && (<p className='movies__found-nothing'>Ничего не найдено</p>)
+            (<MoviesCardlist
+              page='Movies'
+              movies={movies}
+              moviesSaved={moviesSaved}
+              moviesShown={moviesShown}
+              pageCapacity={pageCapacity}
+              handleCardButtonClick={handleCardButtonClick}
+              onSaveMovie={onSaveMovie}
+              onDeleteMovie={onDeleteMovie}
+            />)
           }
         </main>
       </div>

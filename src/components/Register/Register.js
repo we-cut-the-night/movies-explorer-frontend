@@ -1,15 +1,21 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import HeaderWelcome from '../HeaderWelcome/HeaderWelcome';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Register.css'
 
 function Register({ welcome, onSubmit, message }) {
+  const navigate = useNavigate();
   const { register, handleSubmit, reset, formState: { errors, isValid }, } = useForm({ mode: 'all' },);
 
   const handleSubmitForm = ({ name, email, password }) => {
     onSubmit({ name, email, password });
     reset();
   };
+
+  useEffect(() => {
+    localStorage.getItem('jwt') && navigate('/')
+  }, []);
 
   return (
     <div className='register'>
