@@ -45,6 +45,7 @@ function App() {
   // Сообщения с ошибкой
   const [errorMessage, setErrorMessage] = useState('');
   const [profileMessage, setProfileMessage] = useState('');
+  const [delay, setDelay] = useState(0);
 
   // Эффекты
   useEffect(() => {
@@ -198,6 +199,7 @@ function App() {
   // обработка сабмита формы с поиском фильмов
   const handleFormSubmit = (e, page) => {
     e.preventDefault();
+    setDelay(600);
 
     if (page === 'Movies') {
       if (!search) {
@@ -238,6 +240,7 @@ function App() {
       setMoviesShownSaved(pageCapacity);
     };
 
+    setDelay(600);
     setIsLoading(true); // обновить список отображаемых фильмов
 
   };
@@ -249,7 +252,6 @@ function App() {
 
   // Добавление в сохраненные фильмы
   const handleSaveMovie = (movie) => {
-    console.log(movie)
     const data = movie;
 
     localStorage.getItem('jwt') &&
@@ -317,7 +319,8 @@ function App() {
 
     };
 
-    setTimeout(() => setIsLoading(false), 600);
+    setTimeout(() => setIsLoading(false), delay);
+    setDelay(0);
   };
 
   return (
